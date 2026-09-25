@@ -21,12 +21,31 @@ Given acetanilide:
 the program applies a reaction SMARTS template and generates the corresponding fragments.
 
 ### Current reaction template
+A simplified amide bond disconnection rule:
 
 ```text
 [C:1](=O)[N:2] >> [C:1](=O)O.[N:2]
 ```
 
 This is a deliberately simplified retrosynthetic rule rather than a complete model of chemical synthesis.
+
+## Example
+
+Input molecule:
+
+Acetanilide
+
+SMILES:
+
+CC(=O)Nc1ccccc1
+
+Applied rule:
+
+Amide bond cleavage
+
+Output:
+
+Acyl fragment + Aniline fragment
 
 ## Current limitations
 
