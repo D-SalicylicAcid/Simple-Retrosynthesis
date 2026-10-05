@@ -8,7 +8,7 @@ This project started from a simple question:
 
 > If I describe a chemical rule to a computer, can it actually do something with it?
 
-The first version is intentionally simple. It does not use machine learning or deep learning. Instead, it translates a manually defined retrosynthetic rule into a runnable RDKit reaction template.
+The first version was intentionally simple. It does not use machine learning or deep learning. Instead, it translates manually defined retrosynthetic rules into runnable RDKit reaction templates.
 
 ## V0.1 — Amide Bond Cleavage
 
@@ -21,6 +21,7 @@ Given acetanilide:
 the program applies a reaction SMARTS template and generates the corresponding fragments.
 
 ### Current reaction template
+
 A simplified amide bond disconnection rule:
 
 ```text
@@ -37,7 +38,7 @@ Acetanilide
 
 SMILES:
 
-CC(=O)Nc1ccccc1
+`CC(=O)Nc1ccccc1`
 
 Applied rule:
 
@@ -47,18 +48,54 @@ Output:
 
 Acyl fragment + Aniline fragment
 
-## Current limitations
+## V0.2 — Multiple Reaction Templates
 
-V0.1 can only demonstrate a single predefined reaction rule.
+V0.2 expands the project from a single retrosynthetic rule to multiple manually defined reaction templates.
+
+### Added
+
+* Multiple reaction templates
+* User-input SMILES
+* Molecular structure visualization
+* Reaction result visualization
+* Basic reaction-template matching
+
+The current templates include several simple transformations, such as:
+
+* Amide bond cleavage
+* Ester bond cleavage
+* Acyl halide hydrolysis
+* Anhydride hydrolysis
+* Nitrile hydrolysis
+* Alkyl halide substitution
+* Alcohol chlorination
+* Alcohol bromination
+
+V0.2 also revealed an important limitation of a simple rule-based approach:
+
+> A reaction rule can match a structure without necessarily representing a chemically reasonable or preferred transformation.
+
+In other words:
+
+**Being able to make a disconnection is not the same as knowing which disconnection should be made.**
+
+This leads to the next question:
+
+> If multiple transformations are possible, how should they be evaluated and ranked?
+
+## Current Limitations
+
+The current version is still a prototype.
 
 It does not yet:
 
-* choose among multiple disconnections
-* evaluate synthetic feasibility
-* rank candidate routes
+* reliably evaluate chemical feasibility
+* rank candidate transformations
 * learn from reaction datasets
 * perform multi-step retrosynthesis
 * use machine learning or deep learning
+
+The current reaction templates are simplified prototypes for exploring how chemical rules can be translated into executable rules. A successful SMARTS match does not guarantee that the proposed transformation is chemically feasible, synthetically practical, or the most appropriate retrosynthetic choice.
 
 ## Why this project?
 
@@ -70,10 +107,12 @@ This project is an attempt to connect organic chemistry with programming, starti
 
 * [x] Parse molecules with RDKit
 * [x] Implement the first retrosynthetic rule
-* [ ] Add multiple reaction templates
-* [ ] Add candidate filtering
+* [x] Add multiple reaction templates
+* [x] Add basic molecular and reaction visualization
+* [ ] Add candidate scoring
 * [ ] Add basic chemical feasibility rules
 * [ ] Add reaction/template statistics
 * [ ] Explore machine-learning-based ranking
+* [ ] Explore more advanced molecular representations
 
 This project is primarily a learning and experimentation project.
